@@ -11,26 +11,32 @@ public class MostWicket {
 	private String matches;
 	@CsvBindByName(column = "Inns")
 	private String innings;
-	@CsvBindByName(column = "NO")
-	private String notOuts;
+	@CsvBindByName(column = "Ov")
+	private String overs;
 	@CsvBindByName(column = "Runs")
 	private String runs;
-	@CsvBindByName(column = "HS")
-	private String highestScore;
+	@CsvBindByName(column = "Wkts")
+	private String wickets;
+	@CsvBindByName(column = "BBI")
+	private String bbi;
 	@CsvBindByName(column = "Avg")
 	private double avg;
-	@CsvBindByName(column = "BF")
-	private String ballsFaced;
+	@CsvBindByName(column = "Econ")
+	private double economy;
 	@CsvBindByName(column = "SR")
 	private double strikeRate;
-	@CsvBindByName(column = "100")
-	private String hundreds;
-	@CsvBindByName(column = "50")
-	private String fifties;
-	@CsvBindByName(column = "4s")
-	private String fours;
-	@CsvBindByName(column = "6s")
-	private String sixes;
+	@CsvBindByName(column = "4w")
+	private String fourWickets;
+	@CsvBindByName(column = "5w")
+	private String fiveWickets;
+
+	@Override
+	public String toString() {
+		return "Bowling [pos=" + pos + ", player=" + player + ", matches=" + matches + ", innings=" + innings
+				+ ", overs=" + overs + ", runs=" + runs + ", wickets=" + wickets + ", bbi=" + bbi + ", avg=" + avg
+				+ ", economy=" + economy + ", strikeRate=" + strikeRate + ", fourWickets=" + fourWickets
+				+ ", fiveWickets=" + fiveWickets + "]";
+	}
 
 	public String getPos() {
 		return pos;
@@ -64,12 +70,12 @@ public class MostWicket {
 		this.innings = innings;
 	}
 
-	public String getNotOuts() {
-		return notOuts;
+	public String getOvers() {
+		return overs;
 	}
 
-	public void setNotOuts(String notOuts) {
-		this.notOuts = notOuts;
+	public void setOvers(String overs) {
+		this.overs = overs;
 	}
 
 	public String getRuns() {
@@ -80,12 +86,20 @@ public class MostWicket {
 		this.runs = runs;
 	}
 
-	public String getHighestScore() {
-		return highestScore;
+	public String getWickets() {
+		return wickets;
 	}
 
-	public void setHighestScore(String highestScore) {
-		this.highestScore = highestScore;
+	public void setWickets(String wickets) {
+		this.wickets = wickets;
+	}
+
+	public String getBbi() {
+		return bbi;
+	}
+
+	public void setBbi(String bbi) {
+		this.bbi = bbi;
 	}
 
 	public double getAvg() {
@@ -96,59 +110,35 @@ public class MostWicket {
 		this.avg = avg;
 	}
 
-	public String getBallsFaced() {
-		return ballsFaced;
+	public double getEconomy() {
+		return economy;
 	}
 
-	public void setBallsFaced(String ballsFaced) {
-		this.ballsFaced = ballsFaced;
+	public void setEconomy(double economy) {
+		this.economy = economy;
 	}
 
 	public double getStrikeRate() {
 		return strikeRate;
 	}
 
-	public void setStrikeRate(Double strikeRate) {
+	public void setStrikeRate(double strikeRate) {
 		this.strikeRate = strikeRate;
 	}
 
-	public String getHundreds() {
-		return hundreds;
+	public String getFourWickets() {
+		return fourWickets;
 	}
 
-	public void setHundreds(String hundreds) {
-		this.hundreds = hundreds;
+	public void setFourWickets(String fourWickets) {
+		this.fourWickets = fourWickets;
 	}
 
-	public String getFifties() {
-		return fifties;
+	public String getFiveWickets() {
+		return fiveWickets;
 	}
 
-	public void setFifties(String fifties) {
-		this.fifties = fifties;
-	}
-
-	public String getFours() {
-		return fours;
-	}
-
-	public void setFours(String fours) {
-		this.fours = fours;
-	}
-
-	public String getSixes() {
-		return sixes;
-	}
-
-	public void setSixes(String sixes) {
-		this.sixes = sixes;
-	}
-
-	@Override
-	public String toString() {
-		return "Batting [pos=" + pos + ", player=" + player + ", matches=" + matches + ", innings=" + innings
-				+ ", notOuts=" + notOuts + ", runs=" + runs + ", highestScore=" + highestScore + ", avg=" + avg
-				+ ", ballsFaced=" + ballsFaced + ", strikeRate=" + strikeRate + ", hundreds=" + hundreds + ", fifties="
-				+ fifties + ", fours=" + fours + ", sixes=" + sixes + "]";
+	public void setFiveWickets(String fiveWickets) {
+		this.fiveWickets = fiveWickets;
 	}
 }

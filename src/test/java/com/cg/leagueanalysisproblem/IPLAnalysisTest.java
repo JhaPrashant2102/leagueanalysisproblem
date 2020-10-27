@@ -99,4 +99,12 @@ public class IPLAnalysisTest {
 		Assert.assertEquals("Krishnappa Gowtham", highestData[0].getPlayer());
 		Assert.assertEquals(120, highestData[0].getStrikeRate(),0.0);
 	}
+	
+	@Test
+	public void givenMostWktsCsvFile_WhenSorted_ShouldReturnPlayerWithBestEconomy() throws IplAnalyserException {
+		String sortedData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.ECONOMY);
+		MostWicket[] highestData = new Gson().fromJson(sortedData, MostWicket[].class);
+		Assert.assertEquals("Shivam Dube", highestData[0].getPlayer());
+		Assert.assertEquals(4.8, highestData[0].getEconomy(),0.0);
+	}
 }
