@@ -14,7 +14,7 @@ public class MostRun {
 	@CsvBindByName(column = "NO")
 	private String notOuts;
 	@CsvBindByName(column = "Runs")
-	private String runs;
+	private long runs;
 	@CsvBindByName(column = "HS")
 	private String highestScore;
 	@CsvBindByName(column = "Avg")
@@ -72,11 +72,11 @@ public class MostRun {
 		this.notOuts = notOuts;
 	}
 
-	public String getRuns() {
+	public long getRuns() {
 		return runs;
 	}
 
-	public void setRuns(String runs) {
+	public void setRuns(long runs) {
 		this.runs = runs;
 	}
 

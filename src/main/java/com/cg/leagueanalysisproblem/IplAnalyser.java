@@ -23,7 +23,7 @@ import com.opencsv.exceptions.CsvException;
 
 public class IplAnalyser<E> {
 	public enum MostRunSortType {
-		AVERAGE, SR, BOUNDARIES, SR_AND_BOUNDARIES, AVERAGE_AND_SR,
+		AVERAGE, SR, BOUNDARIES, SR_AND_BOUNDARIES, AVERAGE_AND_SR, RUN_AND_AVERAGE,
 	}
 
 	List<E> operationalList;
@@ -45,8 +45,7 @@ public class IplAnalyser<E> {
 
 	}
 
-	public String sortRunData(String mostrunsFilePath,MostRunSortType type)
-			throws IplAnalyserException {
+	public String sortRunData(String mostrunsFilePath, MostRunSortType type) throws IplAnalyserException {
 		List<MostRun> runList = (List<MostRun>) getCSVFileList(mostrunsFilePath, MostRun.class);
 		if (runList.size() == 0 || runList == null) {
 			throw new IplAnalyserException("Empty List", ExceptionType.EMPTY_LIST);
@@ -55,7 +54,7 @@ public class IplAnalyser<E> {
 		switch (type) {
 		case AVERAGE:
 			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getAvg).reversed())
-			.collect(Collectors.toList());
+					.collect(Collectors.toList());
 			break;
 		case SR:
 			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getStrikeRate).reversed())
@@ -63,15 +62,22 @@ public class IplAnalyser<E> {
 			break;
 		case BOUNDARIES:
 			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getBoundaries).reversed())
-			.collect(Collectors.toList());
+					.collect(Collectors.toList());
 			break;
 		case SR_AND_BOUNDARIES:
-			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getStrikeRate).thenComparing(MostRun::getBoundaries).reversed())
-			.collect(Collectors.toList());
+			sortedList = (List<E>) runList.stream().sorted(
+					Comparator.comparing(MostRun::getStrikeRate).thenComparing(MostRun::getBoundaries).reversed())
+					.collect(Collectors.toList());
 			break;
 		case AVERAGE_AND_SR:
-			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getAvg).thenComparing(MostRun::getStrikeRate).reversed())
-			.collect(Collectors.toList());
+			sortedList = (List<E>) runList.stream()
+					.sorted(Comparator.comparing(MostRun::getAvg).thenComparing(MostRun::getStrikeRate).reversed())
+					.collect(Collectors.toList());
+			break;
+		case RUN_AND_AVERAGE:
+			sortedList = (List<E>) runList.stream()
+					.sorted(Comparator.comparing(MostRun::getRuns).thenComparing(MostRun::getAvg).reversed())
+					.collect(Collectors.toList());
 			break;
 		default:
 			break;
