@@ -131,4 +131,13 @@ public class IPLAnalysisTest {
 		Assert.assertEquals("Imran Tahir", highestData[0].getPlayer());
 		Assert.assertEquals(26, highestData[0].getWickets());
 	}
+	@Test
+	public void givenMostWktsAndMostRunCsvFile_WhenSorted_ShouldReturnPlayerWithMaxAvg() throws IplAnalyserException {
+		String sortedWicketData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.AVERAGE);
+		String sortedRunData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.AVERAGE);
+		MostWicket[] highestWicketData = new Gson().fromJson(sortedWicketData, MostWicket[].class);
+		MostRun[] highestRunData = new Gson().fromJson(sortedRunData, MostRun[].class);
+		Assert.assertEquals("Krishnappa Gowtham", highestWicketData[0].getPlayer());
+		Assert.assertEquals("MS Dhoni", highestRunData[0].getPlayer());
+	}
 }
