@@ -24,9 +24,9 @@ public class MostRun {
 	@CsvBindByName(column = "SR")
 	private double strikeRate;
 	@CsvBindByName(column = "100")
-	private String hundreds;
+	private int hundreds;
 	@CsvBindByName(column = "50")
-	private String fifties;
+	private int fifties;
 	@CsvBindByName(column = "4s")
 	private int fours;
 	@CsvBindByName(column = "6s")
@@ -112,19 +112,19 @@ public class MostRun {
 		this.strikeRate = strikeRate;
 	}
 
-	public String getHundreds() {
+	public int getHundreds() {
 		return hundreds;
 	}
 
-	public void setHundreds(String hundreds) {
+	public void setHundreds(int hundreds) {
 		this.hundreds = hundreds;
 	}
 
-	public String getFifties() {
+	public int getFifties() {
 		return fifties;
 	}
 
-	public void setFifties(String fifties) {
+	public void setFifties(int fifties) {
 		this.fifties = fifties;
 	}
 

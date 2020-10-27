@@ -24,7 +24,7 @@ import com.opencsv.exceptions.CsvException;
 @SuppressWarnings("unused")
 public class IplAnalyser<E> {
 	public enum MostRunSortType {
-		AVERAGE, SR, BOUNDARIES, SR_AND_BOUNDARIES, AVERAGE_AND_SR, RUN_AND_AVERAGE,
+		AVERAGE, SR, BOUNDARIES, SR_AND_BOUNDARIES, AVERAGE_AND_SR, RUN_AND_AVERAGE, HUNDREDS_AND_AVERAGE,
 	}
 
 	public enum MostWicketSortType {
@@ -83,6 +83,11 @@ public class IplAnalyser<E> {
 		case RUN_AND_AVERAGE:
 			sortedList = (List<E>) runList.stream()
 					.sorted(Comparator.comparing(MostRun::getRuns).thenComparing(MostRun::getAvg).reversed())
+					.collect(Collectors.toList());
+			break;
+		case HUNDREDS_AND_AVERAGE:
+			sortedList = (List<E>) runList.stream()
+					.sorted(Comparator.comparing(MostRun::getHundreds).thenComparing(MostRun::getAvg).reversed())
 					.collect(Collectors.toList());
 			break;
 		default:

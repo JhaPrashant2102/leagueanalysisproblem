@@ -76,54 +76,54 @@ public class IPLAnalysisTest {
 		Assert.assertEquals(83.2, highestData[0].getAvg(), 0.0);
 		Assert.assertEquals("MS Dhoni", highestData[0].getPlayer());
 	}
-	
+
 	@Test
 	public void givenMostRunCsvFile_WhenSorted_ShouldReturnPlayerWith_MaxRunWithBestAvg() throws IplAnalyserException {
 		String sortedData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.RUN_AND_AVERAGE);
 		MostRun[] highestData = new Gson().fromJson(sortedData, MostRun[].class);
 		Assert.assertEquals("David Warner", highestData[0].getPlayer());
 	}
-	
+
 	@Test
 	public void givenMostWktsCsvFile_WhenSorted_ShouldReturnPlayerWithBestAvg() throws IplAnalyserException {
 		String sortedData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.AVERAGE);
 		MostWicket[] highestData = new Gson().fromJson(sortedData, MostWicket[].class);
 		Assert.assertEquals("Krishnappa Gowtham", highestData[0].getPlayer());
-		Assert.assertEquals(166, highestData[0].getAvg(),0.0);
+		Assert.assertEquals(166, highestData[0].getAvg(), 0.0);
 	}
-	
+
 	@Test
 	public void givenMostWktsCsvFile_WhenSorted_ShouldReturnPlayerWithBestSR() throws IplAnalyserException {
 		String sortedData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.SR);
 		MostWicket[] highestData = new Gson().fromJson(sortedData, MostWicket[].class);
 		Assert.assertEquals("Krishnappa Gowtham", highestData[0].getPlayer());
-		Assert.assertEquals(120, highestData[0].getStrikeRate(),0.0);
+		Assert.assertEquals(120, highestData[0].getStrikeRate(), 0.0);
 	}
-	
+
 	@Test
 	public void givenMostWktsCsvFile_WhenSorted_ShouldReturnPlayerWithBestEconomy() throws IplAnalyserException {
 		String sortedData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.ECONOMY);
 		MostWicket[] highestData = new Gson().fromJson(sortedData, MostWicket[].class);
 		Assert.assertEquals("Shivam Dube", highestData[0].getPlayer());
-		Assert.assertEquals(4.8, highestData[0].getEconomy(),0.0);
+		Assert.assertEquals(4.8, highestData[0].getEconomy(), 0.0);
 	}
-	
+
 	@Test
 	public void givenMostWktsCsvFile_WhenSorted_ShouldReturnPlayerWithBestSRAnd5W4W() throws IplAnalyserException {
 		String sortedData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.SR_AND_5W_4W);
 		MostWicket[] highestData = new Gson().fromJson(sortedData, MostWicket[].class);
 		Assert.assertEquals("Krishnappa Gowtham", highestData[0].getPlayer());
-		Assert.assertEquals(120, highestData[0].getStrikeRate(),0.0);
+		Assert.assertEquals(120, highestData[0].getStrikeRate(), 0.0);
 	}
-	
+
 	@Test
 	public void givenMostWktsCsvFile_WhenSorted_ShouldReturnPlayerWithBestAvgAndSR() throws IplAnalyserException {
 		String sortedData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.AVERAGE_AND_SR);
 		MostWicket[] highestData = new Gson().fromJson(sortedData, MostWicket[].class);
 		Assert.assertEquals("Krishnappa Gowtham", highestData[0].getPlayer());
-		Assert.assertEquals(166, highestData[0].getAvg(),0.0);
+		Assert.assertEquals(166, highestData[0].getAvg(), 0.0);
 	}
-	
+
 	@Test
 	public void givenMostWktsCsvFile_WhenSorted_ShouldReturnPlayerWithMaxWicketsAndAvg() throws IplAnalyserException {
 		String sortedData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.WICKETS_AND_AVG);
@@ -131,6 +131,7 @@ public class IPLAnalysisTest {
 		Assert.assertEquals("Imran Tahir", highestData[0].getPlayer());
 		Assert.assertEquals(26, highestData[0].getWickets());
 	}
+
 	@Test
 	public void givenMostWktsAndMostRunCsvFile_WhenSorted_ShouldReturnPlayerWithMaxAvg() throws IplAnalyserException {
 		String sortedWicketData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.AVERAGE);
@@ -139,5 +140,12 @@ public class IPLAnalysisTest {
 		MostRun[] highestRunData = new Gson().fromJson(sortedRunData, MostRun[].class);
 		Assert.assertEquals("Krishnappa Gowtham", highestWicketData[0].getPlayer());
 		Assert.assertEquals("MS Dhoni", highestRunData[0].getPlayer());
+	}
+
+	@Test
+	public void givenMostRunCsvFile_WhenSorted_ShouldReturnPlayerWith_Max100sWithBestAvg() throws IplAnalyserException {
+		String sortedData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.HUNDREDS_AND_AVERAGE);
+		MostRun[] highestData = new Gson().fromJson(sortedData, MostRun[].class);
+		Assert.assertEquals("David Warner", highestData[0].getPlayer());
 	}
 }
