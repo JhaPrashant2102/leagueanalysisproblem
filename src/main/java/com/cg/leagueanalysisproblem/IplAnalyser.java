@@ -27,7 +27,7 @@ public class IplAnalyser<E> {
 		AVERAGE, SR, BOUNDARIES, SR_AND_BOUNDARIES, AVERAGE_AND_SR, RUN_AND_AVERAGE,
 	}
 	public enum MostWicketSortType{
-		AVERAGE,
+		AVERAGE, SR,
 	}
 
 	List<E> operationalList;
@@ -117,6 +117,10 @@ public class IplAnalyser<E> {
 		switch (type) {
 		case AVERAGE:
 			sortedList = (List<E>) wicketList.stream().sorted(Comparator.comparing(MostWicket::getAvg).reversed())
+					.collect(Collectors.toList());
+			break;
+		case SR:
+			sortedList = (List<E>) wicketList.stream().sorted(Comparator.comparing(MostWicket::getStrikeRate).reversed())
 					.collect(Collectors.toList());
 			break;
 		default:

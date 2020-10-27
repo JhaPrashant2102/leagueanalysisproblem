@@ -22,7 +22,7 @@ public class MostWicket {
 	@CsvBindByName(column = "BF")
 	private String ballsFaced;
 	@CsvBindByName(column = "SR")
-	private String strikeRate;
+	private double strikeRate;
 	@CsvBindByName(column = "100")
 	private String hundreds;
 	@CsvBindByName(column = "50")
@@ -104,11 +104,11 @@ public class MostWicket {
 		this.ballsFaced = ballsFaced;
 	}
 
-	public String getStrikeRate() {
+	public double getStrikeRate() {
 		return strikeRate;
 	}
 
-	public void setStrikeRate(String strikeRate) {
+	public void setStrikeRate(Double strikeRate) {
 		this.strikeRate = strikeRate;
 	}
 
