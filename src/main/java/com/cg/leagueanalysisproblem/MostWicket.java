@@ -26,9 +26,9 @@ public class MostWicket {
 	@CsvBindByName(column = "SR")
 	private double strikeRate;
 	@CsvBindByName(column = "4w")
-	private String fourWickets;
+	private int fourWickets;
 	@CsvBindByName(column = "5w")
-	private String fiveWickets;
+	private int fiveWickets;
 
 	@Override
 	public String toString() {
@@ -126,19 +126,22 @@ public class MostWicket {
 		this.strikeRate = strikeRate;
 	}
 
-	public String getFourWickets() {
+	public int getFourWickets() {
 		return fourWickets;
 	}
 
-	public void setFourWickets(String fourWickets) {
+	public void setFourWickets(int fourWickets) {
 		this.fourWickets = fourWickets;
 	}
 
-	public String getFiveWickets() {
+	public int getFiveWickets() {
 		return fiveWickets;
 	}
 
-	public void setFiveWickets(String fiveWickets) {
+	public void setFiveWickets(int fiveWickets) {
 		this.fiveWickets = fiveWickets;
+	}
+	public int get4W5W() {
+		return this.fiveWickets+this.fourWickets;
 	}
 }
