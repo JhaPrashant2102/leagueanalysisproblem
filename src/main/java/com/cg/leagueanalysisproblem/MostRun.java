@@ -28,9 +28,9 @@ public class MostRun {
 	@CsvBindByName(column = "50")
 	private String fifties;
 	@CsvBindByName(column = "4s")
-	private String fours;
+	private int fours;
 	@CsvBindByName(column = "6s")
-	private String sixes;
+	private int sixes;
 
 	public String getPos() {
 		return pos;
@@ -128,20 +128,24 @@ public class MostRun {
 		this.fifties = fifties;
 	}
 
-	public String getFours() {
+	public int getFours() {
 		return fours;
 	}
 
-	public void setFours(String fours) {
+	public void setFours(int fours) {
 		this.fours = fours;
 	}
 
-	public String getSixes() {
+	public int getSixes() {
 		return sixes;
 	}
 
-	public void setSixes(String sixes) {
+	public void setSixes(int sixes) {
 		this.sixes = sixes;
+	}
+	
+	public int getBoundaries() {
+		return this.fours+this.sixes;
 	}
 
 	@Override

@@ -23,7 +23,7 @@ import com.opencsv.exceptions.CsvException;
 
 public class IplAnalyser<E> {
 	public enum MostRunSortType {
-		AVERAGE, SR,
+		AVERAGE, SR, BOUNDARIES,
 	}
 
 	List<E> operationalList;
@@ -61,6 +61,11 @@ public class IplAnalyser<E> {
 		case SR:
 			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getStrikeRate).reversed())
 					.collect(Collectors.toList());
+			break;
+		case BOUNDARIES:
+			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getBoundaries).reversed())
+			.collect(Collectors.toList());
+			break;
 		default:
 			break;
 		}
