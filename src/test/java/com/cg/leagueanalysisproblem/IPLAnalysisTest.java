@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.cg.leagueanalysisproblem.IplAnalyser.MostRunSortType;
+import com.cg.leagueanalysisproblem.IplAnalyser.MostWicketSortType;
 import com.google.gson.Gson;
 
 public class IPLAnalysisTest {
@@ -81,5 +82,13 @@ public class IPLAnalysisTest {
 		String sortedData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.RUN_AND_AVERAGE);
 		MostRun[] highestData = new Gson().fromJson(sortedData, MostRun[].class);
 		Assert.assertEquals("David Warner", highestData[0].getPlayer());
+	}
+	
+	@Test
+	public void givenMostWktsCsvFile_WhenSorted_ShouldReturnPlayerWithBestAvg() throws IplAnalyserException {
+		String sortedData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.AVERAGE);
+		MostWicket[] highestData = new Gson().fromJson(sortedData, MostWicket[].class);
+		Assert.assertEquals("Krishnappa Gowtham", highestData[0].getPlayer());
+		Assert.assertEquals(166, highestData[0].getAvg(),0.0);
 	}
 }

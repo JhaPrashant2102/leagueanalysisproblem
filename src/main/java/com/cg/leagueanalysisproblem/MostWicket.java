@@ -5,6 +5,33 @@ import com.opencsv.bean.CsvBindByName;
 public class MostWicket {
 	@CsvBindByName(column = "POS")
 	private String pos;
+	@CsvBindByName(column = "PLAYER")
+	private String player;
+	@CsvBindByName(column = "Mat")
+	private String matches;
+	@CsvBindByName(column = "Inns")
+	private String innings;
+	@CsvBindByName(column = "NO")
+	private String notOuts;
+	@CsvBindByName(column = "Runs")
+	private String runs;
+	@CsvBindByName(column = "HS")
+	private String highestScore;
+	@CsvBindByName(column = "Avg")
+	private double avg;
+	@CsvBindByName(column = "BF")
+	private String ballsFaced;
+	@CsvBindByName(column = "SR")
+	private String strikeRate;
+	@CsvBindByName(column = "100")
+	private String hundreds;
+	@CsvBindByName(column = "50")
+	private String fifties;
+	@CsvBindByName(column = "4s")
+	private String fours;
+	@CsvBindByName(column = "6s")
+	private String sixes;
+
 	public String getPos() {
 		return pos;
 	}
@@ -61,11 +88,11 @@ public class MostWicket {
 		this.highestScore = highestScore;
 	}
 
-	public String getAvg() {
+	public double getAvg() {
 		return avg;
 	}
 
-	public void setAvg(String avg) {
+	public void setAvg(double avg) {
 		this.avg = avg;
 	}
 
@@ -116,33 +143,6 @@ public class MostWicket {
 	public void setSixes(String sixes) {
 		this.sixes = sixes;
 	}
-
-	@CsvBindByName(column = "PLAYER")
-	private String player;
-	@CsvBindByName(column = "Mat")
-	private String matches;
-	@CsvBindByName(column = "Inns")
-	private String innings;
-	@CsvBindByName(column = "NO")
-	private String notOuts;
-	@CsvBindByName(column = "Runs")
-	private String runs;
-	@CsvBindByName(column = "HS")
-	private String highestScore;
-	@CsvBindByName(column = "Avg")
-	private String avg;
-	@CsvBindByName(column = "BF")
-	private String ballsFaced;
-	@CsvBindByName(column = "SR")
-	private String strikeRate;
-	@CsvBindByName(column = "100")
-	private String hundreds;
-	@CsvBindByName(column = "50")
-	private String fifties;
-	@CsvBindByName(column = "4s")
-	private String fours;
-	@CsvBindByName(column = "6s")
-	private String sixes;
 
 	@Override
 	public String toString() {
