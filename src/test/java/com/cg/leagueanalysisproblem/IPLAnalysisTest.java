@@ -148,4 +148,11 @@ public class IPLAnalysisTest {
 		MostRun[] highestData = new Gson().fromJson(sortedData, MostRun[].class);
 		Assert.assertEquals("David Warner", highestData[0].getPlayer());
 	}
+	
+	@Test
+	public void givenMostRunCsvFile_WhenSorted_ShouldReturnPlayerWith_Zero100sAndZero50sButWithBestAvg() throws IplAnalyserException {
+		String sortedData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.ZERO100AND50_AND_AVERAGE);
+		MostRun[] highestData = new Gson().fromJson(sortedData, MostRun[].class);
+		Assert.assertEquals("Marcus Stoinis", highestData[0].getPlayer());
+	}
 }

@@ -147,7 +147,9 @@ public class MostRun {
 	public int getBoundaries() {
 		return this.fours+this.sixes;
 	}
-
+	public int getCenturies() {
+		return this.hundreds+this.fifties;
+	}
 	@Override
 	public String toString() {
 		return "Batting [pos=" + pos + ", player=" + player + ", matches=" + matches + ", innings=" + innings
