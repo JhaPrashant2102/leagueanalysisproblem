@@ -26,8 +26,9 @@ public class IplAnalyser<E> {
 	public enum MostRunSortType {
 		AVERAGE, SR, BOUNDARIES, SR_AND_BOUNDARIES, AVERAGE_AND_SR, RUN_AND_AVERAGE,
 	}
-	public enum MostWicketSortType{
-		AVERAGE, SR, ECONOMY, SR_AND_5W_4W, AVERAGE_AND_SR,
+
+	public enum MostWicketSortType {
+		AVERAGE, SR, ECONOMY, SR_AND_5W_4W, AVERAGE_AND_SR, WICKETS_AND_AVG,
 	}
 
 	List<E> operationalList;
@@ -120,19 +121,26 @@ public class IplAnalyser<E> {
 					.collect(Collectors.toList());
 			break;
 		case SR:
-			sortedList = (List<E>) wicketList.stream().sorted(Comparator.comparing(MostWicket::getStrikeRate).reversed())
-					.collect(Collectors.toList());
+			sortedList = (List<E>) wicketList.stream()
+					.sorted(Comparator.comparing(MostWicket::getStrikeRate).reversed()).collect(Collectors.toList());
 			break;
 		case ECONOMY:
 			sortedList = (List<E>) wicketList.stream().sorted(Comparator.comparing(MostWicket::getEconomy))
 					.collect(Collectors.toList());
 			break;
 		case SR_AND_5W_4W:
-			sortedList = (List<E>) wicketList.stream().sorted(Comparator.comparing(MostWicket::getStrikeRate).thenComparing(MostWicket::get4W5W).reversed())
+			sortedList = (List<E>) wicketList.stream().sorted(
+					Comparator.comparing(MostWicket::getStrikeRate).thenComparing(MostWicket::get4W5W).reversed())
 					.collect(Collectors.toList());
 			break;
 		case AVERAGE_AND_SR:
-			sortedList = (List<E>) wicketList.stream().sorted(Comparator.comparing(MostWicket::getAvg).thenComparing(MostWicket::getStrikeRate).reversed())
+			sortedList = (List<E>) wicketList.stream().sorted(
+					Comparator.comparing(MostWicket::getAvg).thenComparing(MostWicket::getStrikeRate).reversed())
+					.collect(Collectors.toList());
+			break;
+		case WICKETS_AND_AVG:
+			sortedList = (List<E>) wicketList.stream().sorted(
+					Comparator.comparing(MostWicket::getWickets).thenComparing(MostWicket::getAvg).reversed())
 					.collect(Collectors.toList());
 			break;
 		default:

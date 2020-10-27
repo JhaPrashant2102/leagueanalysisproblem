@@ -16,7 +16,7 @@ public class MostWicket {
 	@CsvBindByName(column = "Runs")
 	private String runs;
 	@CsvBindByName(column = "Wkts")
-	private String wickets;
+	private int wickets;
 	@CsvBindByName(column = "BBI")
 	private String bbi;
 	@CsvBindByName(column = "Avg")
@@ -86,11 +86,11 @@ public class MostWicket {
 		this.runs = runs;
 	}
 
-	public String getWickets() {
+	public int getWickets() {
 		return wickets;
 	}
 
-	public void setWickets(String wickets) {
+	public void setWickets(int wickets) {
 		this.wickets = wickets;
 	}
 

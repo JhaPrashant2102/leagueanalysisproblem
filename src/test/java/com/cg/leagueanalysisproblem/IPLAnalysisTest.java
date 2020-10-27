@@ -123,4 +123,12 @@ public class IPLAnalysisTest {
 		Assert.assertEquals("Krishnappa Gowtham", highestData[0].getPlayer());
 		Assert.assertEquals(166, highestData[0].getAvg(),0.0);
 	}
+	
+	@Test
+	public void givenMostWktsCsvFile_WhenSorted_ShouldReturnPlayerWithMaxWicketsAndAvg() throws IplAnalyserException {
+		String sortedData = iplAnalyser.sortWicketData(MOSTWICKETS_FILE_PATH, MostWicketSortType.WICKETS_AND_AVG);
+		MostWicket[] highestData = new Gson().fromJson(sortedData, MostWicket[].class);
+		Assert.assertEquals("Imran Tahir", highestData[0].getPlayer());
+		Assert.assertEquals(26, highestData[0].getWickets());
+	}
 }
