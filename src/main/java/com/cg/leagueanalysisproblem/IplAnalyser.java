@@ -23,7 +23,7 @@ import com.opencsv.exceptions.CsvException;
 
 public class IplAnalyser<E> {
 	public enum MostRunSortType {
-		AVERAGE,
+		AVERAGE, SR,
 	}
 
 	List<E> operationalList;
@@ -45,15 +45,25 @@ public class IplAnalyser<E> {
 
 	}
 
-	public String sortRunData(String mostrunsFilePath, Class classType, MostRunSortType type)
+	public String sortRunData(String mostrunsFilePath,MostRunSortType type)
 			throws IplAnalyserException {
 		List<MostRun> runList = (List<MostRun>) getCSVFileList(mostrunsFilePath, MostRun.class);
 		if (runList.size() == 0 || runList == null) {
 			throw new IplAnalyserException("Empty List", ExceptionType.EMPTY_LIST);
 		}
-		List<Double> sortedList = runList.stream().filter(obj -> !obj.getAvg().contains("-"))
-				.map(obj -> obj.getAvg()).map(avg -> Double.parseDouble(avg)).sorted(Collections.reverseOrder())
-				.collect(Collectors.toList());
+		List<E> sortedList = null;
+		switch (type) {
+		case AVERAGE:
+			sortedList = (List<E>) runList.stream().filter(obj -> !obj.getAvg().contains("-")).map(obj -> obj.getAvg())
+					.map(avg -> Double.parseDouble(avg)).sorted(Collections.reverseOrder())
+					.collect(Collectors.toList());
+			break;
+		case SR:
+			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getStrikeRate).reversed())
+					.collect(Collectors.toList());
+		default:
+			break;
+		}
 		String sortedJsonData = new Gson().toJson(sortedList);
 		return sortedJsonData;
 
