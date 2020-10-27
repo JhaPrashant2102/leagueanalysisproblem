@@ -18,7 +18,7 @@ public class MostRun {
 	@CsvBindByName(column = "HS")
 	private String highestScore;
 	@CsvBindByName(column = "Avg")
-	private String avg;
+	private Double avg;
 	@CsvBindByName(column = "BF")
 	private String ballsFaced;
 	@CsvBindByName(column = "SR")
@@ -88,11 +88,11 @@ public class MostRun {
 		this.highestScore = highestScore;
 	}
 
-	public String getAvg() {
-		return avg;
+	public double getAvg() {
+		return this.avg;
 	}
 
-	public void setAvg(String avg) {
+	public void setAvg(Double avg) {
 		this.avg = avg;
 	}
 

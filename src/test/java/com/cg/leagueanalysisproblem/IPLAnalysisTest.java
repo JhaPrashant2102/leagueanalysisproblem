@@ -38,31 +38,38 @@ public class IPLAnalysisTest {
 	@Test
 	public void givenMostRunCsvFile_WhenSortedByAvg_ShouldReturnHighestAverageFirst() throws IplAnalyserException {
 		String sortedData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.AVERAGE);
-		Double[] highestAvgData = new Gson().fromJson(sortedData, Double[].class);
-		Assert.assertEquals(83.2, highestAvgData[0].doubleValue(), 0.0);
+		MostRun[] highestAvgData = new Gson().fromJson(sortedData, MostRun[].class);
+		Assert.assertEquals(83.2, highestAvgData[0].getAvg(),0.0);
 	}
 
 	@Test
 	public void givenMostRunCsvFile_WhenSortedBySR_ShouldReturnHighestSRFirst() throws IplAnalyserException {
 		String sortedData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.SR);
-		MostRun[] highestAvgData = new Gson().fromJson(sortedData, MostRun[].class);
-		Assert.assertEquals(333.33, highestAvgData[0].getStrikeRate(), 0.0);
-		Assert.assertEquals("Ishant Sharma", highestAvgData[0].getPlayer());
+		MostRun[] highestData = new Gson().fromJson(sortedData, MostRun[].class);
+		Assert.assertEquals(333.33, highestData[0].getStrikeRate(), 0.0);
+		Assert.assertEquals("Ishant Sharma", highestData[0].getPlayer());
 	}
 
 	@Test
 	public void givenMostRunCsvFile_WhenSortedByBounndaries_ShouldReturnPlayerWithHighestBoundaries() throws IplAnalyserException {
 		String sortedData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.BOUNDARIES);
-		MostRun[] highestAvgData = new Gson().fromJson(sortedData, MostRun[].class);
-		Assert.assertEquals(83, highestAvgData[0].getBoundaries());
-		Assert.assertEquals("Andre Russell", highestAvgData[0].getPlayer());
+		MostRun[] highestData = new Gson().fromJson(sortedData, MostRun[].class);
+		Assert.assertEquals(83, highestData[0].getBoundaries());
+		Assert.assertEquals("Andre Russell", highestData[0].getPlayer());
 	}
 	
 	@Test
 	public void givenMostRunCsvFile_WhenSortedBySRAndBoundaries_ShouldReturnHighestSRFirst() throws IplAnalyserException {
-		String sortedData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.SR);
+		String sortedData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.SR_AND_BOUNDARIES);
+		MostRun[] highestData = new Gson().fromJson(sortedData, MostRun[].class);
+		Assert.assertEquals(333.33, highestData[0].getStrikeRate(), 0.0);
+		Assert.assertEquals("Ishant Sharma", highestData[0].getPlayer());
+	}
+	
+	@Test
+	public void givenMostRunCsvFile_WhenSorted_ShouldReturnHighestAverageWithBestSR() throws IplAnalyserException {
+		String sortedData = iplAnalyser.sortRunData(MOSTRUNS_FILE_PATH, MostRunSortType.AVERAGE_AND_SR);
 		MostRun[] highestAvgData = new Gson().fromJson(sortedData, MostRun[].class);
-		Assert.assertEquals(333.33, highestAvgData[0].getStrikeRate(), 0.0);
-		Assert.assertEquals("Ishant Sharma", highestAvgData[0].getPlayer());
+		Assert.assertEquals(83.2, highestAvgData[0].getAvg(),0.0);
 	}
 }

@@ -23,7 +23,7 @@ import com.opencsv.exceptions.CsvException;
 
 public class IplAnalyser<E> {
 	public enum MostRunSortType {
-		AVERAGE, SR, BOUNDARIES, SR_AND_BOUNDARIES,
+		AVERAGE, SR, BOUNDARIES, SR_AND_BOUNDARIES, AVERAGE_AND_SR,
 	}
 
 	List<E> operationalList;
@@ -54,9 +54,8 @@ public class IplAnalyser<E> {
 		List<E> sortedList = null;
 		switch (type) {
 		case AVERAGE:
-			sortedList = (List<E>) runList.stream().filter(obj -> !obj.getAvg().contains("-")).map(obj -> obj.getAvg())
-					.map(avg -> Double.parseDouble(avg)).sorted(Collections.reverseOrder())
-					.collect(Collectors.toList());
+			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getAvg).reversed())
+			.collect(Collectors.toList());
 			break;
 		case SR:
 			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getStrikeRate).reversed())
@@ -68,6 +67,10 @@ public class IplAnalyser<E> {
 			break;
 		case SR_AND_BOUNDARIES:
 			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getStrikeRate).thenComparing(MostRun::getBoundaries).reversed())
+			.collect(Collectors.toList());
+			break;
+		case AVERAGE_AND_SR:
+			sortedList = (List<E>) runList.stream().sorted(Comparator.comparing(MostRun::getAvg).thenComparing(MostRun::getStrikeRate).reversed())
 			.collect(Collectors.toList());
 			break;
 		default:
